@@ -1,0 +1,5 @@
+(str "hello" " " "world")
+(vector 1 2 3)
+(list 1 2 3)
+(hash-map "hello" "world" "goodbye" "tomorrow")
+(hash-set "hello" "world" "goodbye" "tomorrow")
