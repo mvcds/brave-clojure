@@ -19,9 +19,14 @@
                              {:name "1_foot" :size 2}])
 
 (defn matching-part
-  [part]
-  {:name (clojure.string/replace (:name part) #"^1_" (str 2 "_"))
+  [part n]
+  {:name (clojure.string/replace (:name part) #"^1_" (str n "_"))
    :size (:size part)})
+
+(defn create-set-of-parts
+  [part]
+  (for [x (range 2 6)]
+    (matching-part part x)))
 
 (defn symmetrize-body-parts
   "Expects a seq of maps that have a :name and :size"
@@ -33,6 +38,6 @@
       (let [[part & remaining] remaining-asym-parts]
         (recur remaining
                (into final-body-parts
-                     (set [part (matching-part part)])))))))
+                     (set [part (create-set-of-parts part)])))))))
 
 (symmetrize-body-parts asym-hobbit-body-parts)
