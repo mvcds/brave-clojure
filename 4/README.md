@@ -23,3 +23,31 @@ Clojure also allows for **Polymorphism**. Polymorphic functions dispatch to diff
 > `seq`
 
 It produces lists
+
+> `take`
+
+Returns the first n elements of the sequence
+
+```
+(take 3 [1 2 3 4 5 6 7 8 9 10])
+; => (1 2 3)
+```
+
+> `drop`
+
+Removes the first n elements of a sequence
+
+```
+(drop 3 [1 2 3 4 5 6 7 8 9 10])
+; => (4 5 6 7 8 9 10)
+```
+
+> `take-while` and `drop-while`
+
+Do a similar thing but take a predicate to find the point where to stop (first false and first true, repectivelly)
+
+`(drop-while #(< (:month %) 3) food-journal)`
+
+Both functions don't consume all the data, if it is not necessary
+
+>
