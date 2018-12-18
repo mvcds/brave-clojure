@@ -50,4 +50,20 @@ Do a similar thing but take a predicate to find the point where to stop (first f
 
 Both functions don't consume all the data, if it is not necessary
 
->
+> Lazy sequences
+
+A seq which is only created when necessary. Trying to access such data is called *realizing the seq*.
+
+This is done by efficiency but has the advantage of allow to use infinite sequences.
+
+Clojure chunks the values for lazy seqs i.e. it realizes 32(?) items of a sequence at oonce
+
+`(repeat literal)` and `(repeatedly function)` are functions which create a infinite sequence, so they can be used with take`.
+
+> Collection
+
+While a seq implements indivual operations, collections act upon the wholw data structure.
+
+* `empty?`
+* `every?`
+* `count`
