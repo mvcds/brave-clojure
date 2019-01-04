@@ -67,3 +67,9 @@ While a seq implements indivual operations, collections act upon the wholw data 
 * `empty?`
 * `every?`
 * `count`
+
+> Functions
+
+* `apply`: explodes a seq data structure so that it can be used as a rest parameter => `(= (max 0 1 2) (apply max [0 1 2])`
+* `partial`: creates a partial function => (def add10 (partial + 10))
+* `complement`: negates a function => `(def isEven? (complement odd?))`
