@@ -2,6 +2,8 @@
 
 Be able to change the function call by its return value without affecting the program because the function would return that exaclty value
 
+If a function is affected by external conditions, it cannot be considered referentially transparent because it is not predictable e.g. reading from a stream may make the function change its return value over time
+
 > Side effect
 
 A side effect happens when change within a function is observable outside of it
