@@ -14,3 +14,7 @@ A side effect happens when change within a function is observable outside of it
 2. Cause no side effects
 
 A pure function relies only on its own arguments and immutable values to produce its result
+
+> [Tail call optimization](https://en.wikipedia.org/wiki/Tail_call)
+
+> [Structural sharing](https://hypirion.com/musings/understanding-persistent-vector-pt-1)
