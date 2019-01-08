@@ -27,3 +27,9 @@ Recursion is basically function composition over the same function
 
 * `comp`: creates a new function from the composition of any number of functions, the first function can take anu number of arguments but the remaining functions should be unary `(= 7 ((comp inc *) 2 3))`
 * `memoize`: with pure functions, it takes advantage of referencial transparency by storing a function's arguments and the value returned by it `(memoize (fib 10))
+
+> "Clojure headers" preview
+
+* `(require [something :as name])`: make easier to use `something`
+* `(:gen-class)`: allows to run the program from the command line
+* `(declare foo baz xii)`: allows functions to refer to those names before they are defined
