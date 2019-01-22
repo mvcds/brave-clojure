@@ -10,6 +10,8 @@ By default, a REPL starts in the `user` namespace and refers to `clojure.core`
 
 `(clojure.core/refer-clojure)` is a practical way to refer to `clojure.core` namespace
 
+Namespaces are not bound automatically, it is necesary to tell Clojure which namespaces you want to use, even when they are in the project.
+
 > Symbols
 
 Data types within Clojure
