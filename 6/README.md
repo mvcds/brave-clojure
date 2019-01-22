@@ -83,3 +83,16 @@ When using `lein`, underscores in the filesystem correspond to dashes in the nam
 
 And talking about the filesystem, directories are used before the period, and the file after => `directory-separated-by-dashes.name-of-file-with-no-extension`
 
+> Require
+
+Read and evaluate the contents of a namespace, you can use `:as` as a way to use alias.
+
+`(require '[the-divine-cheese-code.visualization.svg :as svg])`
+
+> Use
+
+Through `use`, it is possible to `require` and `refer` automatically
+
+`:as` also works with use
+
+`use` is frowned upon in production
