@@ -75,3 +75,9 @@ It is still possible to access it by using `@#'some/private-var`
 
 "Rename" a namespace reference locally, so it is easier to refer to it `(clojure.core/alias 'taxonomy 'cheese.taxonomy)`
 
+> Name conventions
+
+When using `lein`, underscores in the filesystem correspond to dashes in the namespace.
+
+And talking about the filesystem, directories are used before the period, and the file after => `directory-separated-by-dashes.name-of-file-with-no-extension`
+
