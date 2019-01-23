@@ -96,3 +96,5 @@ Through `use`, it is possible to `require` and `refer` automatically
 `:as` also works with use
 
 `use` is frowned upon in production
+
+If you use `use` with a vector, the first item is the base, and the rest are symbols within that base => `(:use [clojure.java browse io])`
