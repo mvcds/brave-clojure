@@ -50,3 +50,15 @@ A set of rules for transforming text into data structures, often compacted due t
 => (read-string "'(a b c)")
 ; (quote (a b c))
 ```
+
+> The Evaluator
+
+It is basically a functions which takes the AST and process it using rules of that data structure's type.
+
+Evaluation begins from the first item of the list.
+
+* When evaluating data structures which aren't lists or symbols, the result it the data structure itself
+* Symbols are resolved to either a value or special form
+* Lists, when empty, evaluate to themselves. Otherwise the first element is called
+    * If the call happens on a `function`, each of the other elements are considerated as its operands
+    * If the call happens on a `special form`, the form will decide what to do with subsequent elements, for instance `if` only calls the truthy or falsy element
