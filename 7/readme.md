@@ -23,3 +23,8 @@ It has two phases
 
 In the evaluating phase, Clojure is using native data structures, which makes it homoiconic.
 
+> [S-Expressions](http://www.gigamonkeys.com/book/syntax-and-semantics.html)???
+
+> eval
+
+`eval` is used to evaluate expressions
