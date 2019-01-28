@@ -14,3 +14,12 @@ A data structure representing the program.
 
 It serves as an input to the languages' evaluators.
 
+> Clojure's Evaluation Model
+
+It has two phases
+
+* Reading: where textual source code is produced into Clojure data structures.
+* Evaluating: where Clojure traverses the structures to perform actions.
+
+In the evaluating phase, Clojure is using native data structures, which makes it homoiconic.
+
