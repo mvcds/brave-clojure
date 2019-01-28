@@ -28,3 +28,25 @@ In the evaluating phase, Clojure is using native data structures, which makes it
 > eval
 
 `eval` is used to evaluate expressions
+
+> The Reader
+
+The textual representation of data structures is called `reader form`, by using `read-string` it is possible to convert the form to a list.
+
+As `(str "A," "B," "C")` consists in one `str` symbol and three strings, reading it with `read-string` would produce a list with 4 items.
+
+`(= (list? (read-string "(+ 1 2)")) true)`
+
+```
+=> (read-string "#(+ 1 %)")
+; (fn* [p1__423#] (+ 1 p1__423#))
+```
+
+> Reader Macros
+
+A set of rules for transforming text into data structures, often compacted due to an abbreviated reader form using `macro characters like "', # and @".
+
+```
+=> (read-string "'(a b c)")
+; (quote (a b c))
+```
