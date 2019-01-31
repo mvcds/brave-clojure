@@ -1,8 +1,8 @@
 > Macro
 
-Allo developers to transform aribrary expressions into valid Clojure, so it is possible to extend the language.
+Allow developers to transform arbitrary expressions into valid Clojure, so it is possible to extend the language.
 
-`defmacro` works exactly like `defn`git
+`defmacro` works exactly like `defn`
 
 > Homoiconicity
 
