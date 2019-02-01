@@ -93,3 +93,16 @@ It is possible to use `macroexpand` to see what data structure a macro returns b
 => (macroexpand '(ignore-last-operand (+ 1 2 10)))
 ; (+ 1 2)
 ```
+
+> The threading/stabby macro
+
+By using the `->` macro, it is possible to pipeline data through functions
+
+```
+(defn read-resource
+  [path]
+  (-> path
+      clojure.java.io/resource
+      slurp
+      read-string))
+```
