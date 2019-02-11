@@ -9,17 +9,17 @@
         (first infixed)
         (last infixed)))
  
-(defn does-root-have-bigger-precedent?
-  [rootNode leafNode]
-    (let [a (.indexOf precedence rootNode)
-          b (.indexOf precedence leafNode)]
+(defn does-oldOperator-have-bigger-precedent?
+  [oldOperator newOperator]
+    (let [a (.indexOf precedence oldOperator)
+          b (.indexOf precedence newOperator)]
        (< a b)))
 
-(defn is-root-bigger?
-  [rootNode leafNode]
+(defn is-OldOperator-bigger?
+  [oldOperator newOperator]
     (cond
-       (and (function? rootNode) (function? leafNode)) (does-root-have-bigger-precedent? rootNode leafNode)
-       :else (function? leafNode)))
+       (and (function? oldOperator) (function? newOperator)) (does-oldOperator-have-bigger-precedent? oldOperator newOperator)
+       :else (function? newOperator)))
 
 (defmacro infix
   [infixed]
