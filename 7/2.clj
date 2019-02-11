@@ -21,6 +21,11 @@
        (and (function? oldOperator) (function? newOperator)) (does-oldOperator-have-bigger-precedent? oldOperator newOperator)
        :else (function? newOperator)))
 
+(defn normalize
+  [infixed]
+    (let [normal { :a (first infixed) :operator (second infixed) :b (nth infixed 2) }]
+      normal))
+
 (defmacro infix
   [infixed]
   (list (second infixed)
