@@ -9,22 +9,44 @@
         (first infixed)
         (last infixed)))
  
-(defn does-oldOperator-have-bigger-precedent?
-  [oldOperator newOperator]
-    (let [a (.indexOf precedence oldOperator)
-          b (.indexOf precedence newOperator)]
+(defn does-oldNode-have-bigger-precedent?
+  [oldNode newNode]
+    (let [a (.indexOf precedence oldNode)
+          b (.indexOf precedence newNode)]
        (< a b)))
 
-(defn is-OldOperator-bigger?
-  [oldOperator newOperator]
+(defn is-oldNode-bigger?
+  [oldNode newNode]
     (cond
-       (and (function? oldOperator) (function? newOperator)) (does-oldOperator-have-bigger-precedent? oldOperator newOperator)
-       :else (function? newOperator)))
+       (and (function? oldNode) (function? newNode)) (does-oldNode-have-bigger-precedent? oldNode newNode)
+       :else (function? newNode)))
+
+(defn replace-b
+  [a operator b next-node nodes]
+    { :a a :operator operator :b (normalize (into [b next-node] nodes)) })
+
+(defn add-node
+  ([normalized next-node nodes]
+    (let [a (:a normalized) 
+          operator (:operator normalized)
+          b (:b normalized)]
+      (if (is-oldNode-bigger? operator next-node)
+        next-node
+        (replace-b a operator b next-node nodes)))))
+
+; { :a 1 :operator '+ :b 3 }
+; { :a 1 :operator '+ :b { a: 3 :operator '* b: 4 }}
+
+(defn read-next-node
+  ([normalized nodes]
+    (if (empty? nodes)
+      (identity normalized)
+      (add-node normalized (first nodes) (rest nodes)))))
 
 (defn normalize
   [infixed]
     (let [normal { :a (first infixed) :operator (second infixed) :b (nth infixed 2) }]
-      normal))
+      (read-next-node normal (drop 3 infixed))))
 
 (defmacro infix
   [infixed]
