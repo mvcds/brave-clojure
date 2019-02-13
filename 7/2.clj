@@ -13,7 +13,7 @@
   [oldNode newNode]
     (let [a (.indexOf precedence oldNode)
           b (.indexOf precedence newNode)]
-       (< a b)))
+       (<= a b)))
 
 (defn is-oldNode-bigger?
   [oldNode newNode]
@@ -21,21 +21,17 @@
        (and (function? oldNode) (function? newNode)) (does-oldNode-have-bigger-precedent? oldNode newNode)
        :else (function? newNode)))
 
-(defn replace-b
-  [a operator b next-node nodes]
-    { :a a :operator operator :b (normalize (into [b next-node] nodes)) })
-
 (defn add-node
   ([normalized next-node nodes]
-    (let [a (:a normalized) 
+    (let [a (:a normalized)
           operator (:operator normalized)
           b (:b normalized)]
       (if (is-oldNode-bigger? operator next-node)
-        next-node
-        (replace-b a operator b next-node nodes)))))
+        { :a (normalize (into [a operator b] (rest nodes))) :operator next-node :b (first nodes) }
+        { :a a :operator operator :b (normalize (into [b next-node] nodes)) }))))
 
-; { :a 1 :operator '+ :b 3 }
-; { :a 1 :operator '+ :b { a: 3 :operator '* b: 4 }}
+; { :a 1 :operator '* :b 3 }
+; { :a { :a 1 :operator '* :b 4 } :operator '+ :b 3 }
 
 (defn read-next-node
   ([normalized nodes]
