@@ -2,12 +2,6 @@
 
 (def precedence
   ['* '/ '+ '-])
-
-(defmacro infix-to-list
-  [infixed]
-  (list (second infixed)
-        (first infixed)
-        (last infixed)))
  
 (defn does-oldNode-have-bigger-precedent?
   [oldNode newNode]
@@ -29,11 +23,6 @@
       (if (is-oldNode-bigger? operator next-node)
         { :a (normalize (into [a operator b] (rest nodes))) :operator next-node :b (first nodes) }
         { :a a :operator operator :b (normalize (into [b next-node] nodes)) }))))
-
-; {:a 1, :operator +, :b {:a {:a 3, :operator *, :b 4}, :operator -, :b 5}}
-; {:a 1, :operator +, :b {:a 12, :operator -, :b 5}}
-; {:a 1, :operator +, :b 7}
-; 8
 
 (defn read-next-node
   ([normalized nodes]
@@ -60,22 +49,11 @@
   (let [normalized (normalize infixed)]
     (evaluate normalized)))
 
-(macroexpand '(infix (1 + 3 * 4 - 5)))
+; (macroexpand '(infix (1 + 3 * 4 - 5)))
 
-;            1
-;                   +
-;               3                *
-;                 4
-;                       5            -
-
- ; [- 5 * 4 3 + 1]
- ; [- 5 (* 4 3) + 1]
- ; [- 5 (+ (* 4 3) 1)]
- ; [(- 5 (+ (* 4 3) 1)]
-
-; (def control (- (+ 1 (* 3 4)) 5))
-; (def result (infix (1 + 3 * 4 - 5)))
+(def control (- (+ 1 (* 3 4)) 5))
+(def result (infix (1 + 3 * 4 - 5)))
 
 ; (println result)
 
-; (= control result)
+(= control result)
