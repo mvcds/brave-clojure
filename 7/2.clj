@@ -30,8 +30,10 @@
         { :a (normalize (into [a operator b] (rest nodes))) :operator next-node :b (first nodes) }
         { :a a :operator operator :b (normalize (into [b next-node] nodes)) }))))
 
-; { :a 1 :operator '* :b 3 }
-; { :a { :a 1 :operator '* :b 4 } :operator '+ :b 3 }
+; {:a 1, :operator +, :b {:a {:a 3, :operator *, :b 4}, :operator -, :b 5}}
+; {:a 1, :operator +, :b {:a 12, :operator -, :b 5}}
+; {:a 1, :operator +, :b 7}
+; 8
 
 (defn read-next-node
   ([normalized nodes]
@@ -44,11 +46,19 @@
     (let [normal { :a (first infixed) :operator (second infixed) :b (nth infixed 2) }]
       (read-next-node normal (drop 3 infixed))))
 
+(defn evaluate
+  [normalized]
+    (let [a (:a normalized)
+          operator (:operator normalized)
+          b (:b normalized)]
+      (let [value-a (if (map? a) (evaluate a) (identity a))
+            value-b (if (map? b) (evaluate b) (identity b))]
+        (list operator value-a value-b))))
+
 (defmacro infix
   [infixed]
-  (list (second infixed)
-        (first infixed)
-        (nth infixed 2)))
+  (let [normalized (normalize infixed)]
+    (evaluate normalized)))
 
 (macroexpand '(infix (1 + 3 * 4 - 5)))
 
