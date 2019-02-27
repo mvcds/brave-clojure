@@ -72,3 +72,15 @@ Think about them as string interpolation, but instead they turn of and on the ev
 => `(+ 1 ~(inc 1))
 ; (clojure.core/+ 1 2)
 ```
+
+> Unquote splicing
+
+It unwraps a sequable data structure, similar to `apply`.
+
+```
+=> `(+ ~(list 1 2 3))
+; (clojure.core/+ (1 2 3))
+
+=> `(+ ~@(list 1 2 3))
+; (clojure.core/+ 1 2 3)
+```
