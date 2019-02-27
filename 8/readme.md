@@ -84,3 +84,15 @@ It unwraps a sequable data structure, similar to `apply`.
 => `(+ ~@(list 1 2 3))
 ; (clojure.core/+ 1 2 3)
 ```
+
+> gensym
+
+A function which produces unique symbols on each call. The prefix is optional.
+
+`(gensym 'anything)`
+
+It is also possible to append a hash mark `(#)` to create an auto-gensym.
+
+```
+`(anything#)
+```
