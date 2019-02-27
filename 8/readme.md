@@ -96,3 +96,11 @@ It is also possible to append a hash mark `(#)` to create an auto-gensym.
 ```
 `(anything#)
 ```
+
+> Macro gotchas
+
+* **Variable capture**: when a macro introduces a binding that, unknown to the macro's user, eclipses an existing binding e.g. a `let` on the macro which name collides with an external variable. (Auto-)gensym can be used to prevent it.
+
+* **Double evaluation**: Occurs when a form passed to a macro as an argument is evaluated more than once. This can affect how the macro renders the AST, which can have impact on code e.g. `(Thread/sleep 1000)` if evaluated 4 times, will make the Thread sleep for 4 seconds, which may be undesirable.
+
+* **Macros All the Way Down**: As the macro expansion phase happens before evaluation, some values may be out of reach for a macro.
