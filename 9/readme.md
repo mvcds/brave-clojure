@@ -45,15 +45,15 @@ With threads, the program beconmes **nondeterministic** because there's no guara
 
 > Reference cell problem
 
-When two or more threads can read and write to the same location, and the value on that location depends on the order of the writes and reads.
+When two or more threads can read and write to the same resource, and the value on that resource depends on the order of the writes and reads.
 
 > Mutual exclusion problem
 
-If instructions which change the same file, without mutual exclusion on the prermission to write on it, are interleaved, the file will have a mix of both threads in it.
+If instructions which change the same resource, without mutual exclusion on the prermission to write on it, are interleaved, the file will have a mix of both threads in it.
 
 > Deadlock
 
-Happens one thread is blocked by another thread.
+Happens one thread is blocked by another thread waiting for its turn to access the resource.
 
 (aka _dining philosophers problem_)
 
