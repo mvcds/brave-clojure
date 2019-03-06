@@ -65,6 +65,8 @@ The method returns a reference value which can be used to dereference.
 
 It is possible to know if the future has finished by using `realized?`.
 
+They help with the mutual exclusion problem.
+
 > Dereferencing
 
 Means "requesting" the value of the future. It will be the last expression evaluated on the future's body.
@@ -89,3 +91,21 @@ As a function, it is possible to limit how long `deref` should wait.
 => (deref (future (Thread/sleep 1000) 0) :limit :time-out-value)
 ; 5
 ```
+
+> Delay
+
+`delay` can be used to define a task without having to execute it or require the result immediately.
+
+It can be derefereced or forced through `force`.
+
+A delay is executed only once so they help with the mutual exclusion problem.
+
+> Promise
+
+`promise` allows to express that an result is expected, without having to define the task that should produce it or when that task should run.
+
+To bind the result to a promise it's necessary to `deliver`, and to get itto use dereferencing.
+
+As it is not possible to override a delivered value, promisses help with te reference cell problem.
+
+It's possible to use `deref` to set a timeout.
