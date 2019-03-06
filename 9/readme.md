@@ -12,13 +12,16 @@ It is not necessary to complete a task before switching.
 
 Managing more than on task at the same time.
 
- be achieved with interleaving.
+Can be achieved with interleaving.
+
+Part of learning concurrent programming is learning to identify when chronological couplings aren’t necessary. Futures, delays, and promises allow you to separate task definition, task execution, and requiring the result.
 
 > Parallelism
 
 A subclass of concurrency where more than one task is executed simultaneasly.
 
 Generally achieved by simultaneously executing tasks on multiple processors.
+
 
 > Distributed computing
 
@@ -53,3 +56,36 @@ If instructions which change the same file, without mutual exclusion on the prer
 Happens one thread is blocked by another thread.
 
 (aka _dining philosophers problem_)
+
+> Future
+
+`future` define a task and place it on another thread without requiring the result immediately.
+
+The method returns a reference value which can be used to dereference.
+
+It is possible to know if the future has finished by using `realized?`.
+
+> Dereferencing
+
+Means "requesting" the value of the future. It will be the last expression evaluated on the future's body.
+
+Can be used as `deref` function, or with the `@` reader macro.
+
+```
+=>  (let [result (future (println "this prints once")
+                         (+ 1 1))]
+        (println "deref: " (deref result))
+        (println "@: " @result))
+; "this prints once"
+; deref: 2
+; @: 2
+```
+
+Notice that the string "this prints once" indeed prints only once, even though you dereference the future twice. This shows that the future’s body ran only once and the result, 2, got cached.
+
+As a function, it is possible to limit how long `deref` should wait.
+
+```
+=> (deref (future (Thread/sleep 1000) 0) :limit :time-out-value)
+; 5
+```
