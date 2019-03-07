@@ -107,5 +107,3 @@ A delay is executed only once so they help with the mutual exclusion problem.
 To bind the result to a promise it's necessary to `deliver`, and to get itto use dereferencing.
 
 As it is not possible to override a delivered value, promisses help with te reference cell problem.
-
-It's possible to use `deref` to set a timeout.
