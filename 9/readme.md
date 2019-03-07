@@ -57,6 +57,12 @@ Happens one thread is blocked by another thread waiting for its turn to access t
 
 (aka _dining philosophers problem_)
 
+> Dereferencing
+
+Means "requesting" the value. It will be the last expression evaluated on the `deref` macro.
+
+It has `@` as its reader macro.
+
 > Future
 
 `future` define a task and place it on another thread without requiring the result immediately.
@@ -66,12 +72,6 @@ The method returns a reference value which can be used to dereference.
 It is possible to know if the future has finished by using `realized?`.
 
 They help with the mutual exclusion problem.
-
-> Dereferencing
-
-Means "requesting" the value of the future. It will be the last expression evaluated on the future's body.
-
-Can be used as `deref` function, or with the `@` reader macro.
 
 ```
 =>  (let [result (future (println "this prints once")
