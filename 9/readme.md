@@ -18,14 +18,14 @@ Part of learning concurrent programming is learning to identify when chronologic
 
 > Parallelism
 
-A subclass of concurrency where more than one task is executed simultaneasly.
+A subclass of concurrency where more than one task is executed simultaneously.
 
 Generally achieved by simultaneously executing tasks on multiple processors.
 
 
 > Distributed computing
 
-A spectial version of parallel computing, where tasks are distributed on different compiters
+A special version of parallel computing, where tasks are distributed on different computers
 
 > Blocking
 
@@ -33,7 +33,7 @@ Waiting for a task to finish.
 
 It most used in relation to I/O operations. 
 
-Non-blocking operatoions may happen asynchronously.
+Non-blocking operations may happen asynchronously.
 
 > Thread
 
@@ -49,7 +49,7 @@ When two or more threads can read and write to the same resource, and the value 
 
 > Mutual exclusion problem
 
-If instructions which change the same resource, without mutual exclusion on the prermission to write on it, are interleaved, the file will have a mix of both threads in it.
+If instructions which change the same resource, without mutual exclusion on the permission to write on it, are interleaved the file will have a mix of both threads in it.
 
 > Deadlock
 
