@@ -63,9 +63,16 @@ Means "requesting" the value. It will be the last expression evaluated on the `d
 
 It has `@` as its reader macro.
 
+As a function, it is possible to limit how long `deref` should wait.
+
+```
+=> (deref (future (Thread/sleep 1000) 0) :limit :time-out-value)
+; 5
+```
+
 > Future
 
-`future` define a task and place it on another thread without requiring the result immediately.
+`future` define a task and execute it on another thread without requiring the result immediately.
 
 The method returns a reference value which can be used to dereference.
 
@@ -84,13 +91,6 @@ They help with the mutual exclusion problem.
 ```
 
 Notice that the string "this prints once" indeed prints only once, even though you dereference the future twice. This shows that the future’s body ran only once and the result, 2, got cached.
-
-As a function, it is possible to limit how long `deref` should wait.
-
-```
-=> (deref (future (Thread/sleep 1000) 0) :limit :time-out-value)
-; 5
-```
 
 > Delay
 
