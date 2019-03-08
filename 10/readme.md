@@ -24,3 +24,24 @@ The value of an identify at a point in time.
 
 It is analog of receiving new data in the real world, just because it has changed it doesn't mean that in the past the value was not different i.e. time as a stream
 
+> Reference type
+
+Let you manage identities
+
+> Atom
+
+`atom` creates a new atom which *refers*  to its initial value.
+
+Getting the state of an atom requires dereferencing.
+
+> Changing an Atom's state
+
+`swap!` applies an updater function to the current's atom's state to create a new value on the identity.
+
+`swap!` also returns the new current's atom's state.
+
+Under the hood, `swap!` implements a *compare-and-set* semantics which basically means that if the atom's state change in the middle of an operation, it will retry to change its state based on the now current's state.
+
+> Reset
+
+It is possible to update an atom withouth checking its current value by using `reset`
