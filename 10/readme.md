@@ -26,7 +26,9 @@ It is analog of receiving new data in the real world, just because it has change
 
 > Reference type
 
-Let you manage identities
+Let you manage identities.
+
+There are four reference types in Clojure: atom, ref, var and agent (this last one will not be covered).
 
 > Atom
 
