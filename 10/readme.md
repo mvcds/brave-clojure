@@ -58,5 +58,4 @@ A *watch* is a function which can be attached to a reference type. It gets execu
 
 A predicate function which executes before the reference type's state is changed. It throws an exception in negative case.
 
-Atoms can get they validators by setting a function to the `:validator` keyword.
-
+Atoms can get they validators by setting a function to the `:validator` keyword in the moment they are created.
