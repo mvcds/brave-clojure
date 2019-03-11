@@ -59,3 +59,17 @@ A *watch* is a function which can be attached to a reference type. It gets execu
 A predicate function which executes before the reference type's state is changed. It throws an exception in negative case.
 
 Atoms can get they validators by setting a function to the `:validator` keyword in the moment they are created.
+
+> Ref
+
+Allows to update the state of multiple identities using transaction semantics. These transactions are:
+
+1. Atomic: all refs are updated or none of them
+2. Consistent: all refs will have valid state
+3. Isolated: the transactions behave as if they were executed serially. If two threads use the same ref, one of them will retry.
+
+Clojure uses __software transactional memory__ (STM) to implement this transactional feature.
+
+A ref is created using `ref` function. And it gets altered by using `alter` withing a transaction (created by `dosync`).
+
+It is possible to ignore the retry by usind `commute` instead of `alter`.
