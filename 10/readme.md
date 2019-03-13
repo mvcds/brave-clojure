@@ -73,3 +73,29 @@ Clojure uses __software transactional memory__ (STM) to implement this transacti
 A ref is created using `ref` function. And it gets altered by using `alter` withing a transaction (created by `dosync`).
 
 It is possible to ignore the retry by usind `commute` instead of `alter`.
+
+> Earmuffs
+
+In lisper, __earmuff__ is name enclosed by asterisks, like `*notification-address*`
+
+> Var
+
+A `var` is an association between symbols and objects, they are created with `def`.
+
+It's possible to dynamically bind them to alter their roots.
+
+> Dynamic vars
+
+Useful for creating global names that should refer to different values in different contexts.
+
+A dynamic var requires the `^:dynamic` keyword and earmuffs.
+
+`(def ^:dynamic *notification-address* "dobby@elf.org")`
+
+It's possible to rebind the value of a var
+
+`(binding [*name* "value"] ...)`
+
+Usually, dynamic vars are used to name a resource that one or more functions target or to configure code.
+
+It's possible to "capture" a value within a function using `set!`, a bit like if it you were setting a value BUT to a variable outside of the function.
