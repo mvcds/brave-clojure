@@ -32,17 +32,15 @@ There are four reference types in Clojure: atom, ref, var and agent (this last o
 
 > Atom
 
-`atom` creates a new atom which *refers*  to its initial value.
+`atom` creates a new atom which *refers* to its initial value.
 
 Getting the state of an atom requires dereferencing.
 
 > Changing an Atom's state
 
-`swap!` applies an updater function to the current's atom's state to create a new value on the identity.
+`swap!` applies an updater function to the current's atom's state to create a new value on the identity. It also returns the new current's atom's state.
 
-`swap!` also returns the new current's atom's state.
-
-Under the hood, `swap!` implements a *compare-and-set* semantics which basically means that if the atom's state change in the middle of an operation, it will retry to change its state based on the now current's state.
+Under the hood, `swap!` implements a *compare-and-set* semantics which basically means that if the atom's state change in the middle of an operation, it will retry to change its state based on the now current's state until it is able to set the value.
 
 > Reset
 
@@ -92,10 +90,18 @@ A dynamic var requires the `^:dynamic` keyword and earmuffs.
 
 `(def ^:dynamic *notification-address* "dobby@elf.org")`
 
-It's possible to rebind the value of a var
+It's possible to rebind the value of a var similat to `let`
 
 `(binding [*name* "value"] ...)`
 
-Usually, dynamic vars are used to name a resource that one or more functions target or to configure code.
+Usually, dynamic vars are used to name a resource that one or more functions target (through arguments) or to configure code.
 
-It's possible to "capture" a value within a function using `set!`, a bit like if it you were setting a value BUT to a variable outside of the function.
+It's possible to "capture" a value within a function using `set!`, a bit like if it you were setting a value BUT to a variable outside of the function. **Kind like `out` in C#**
+
+> Altering the var root
+
+When you create a new var, the initial value is its *root*.
+
+It's possible to change value of the root like if we were mutating it. **This is against Clojure's philosofy!**
+
+You can also temporarily alter a root with `with-redefs`, the var doesn't need to by dynamic. It is useful to mock values on tests.
