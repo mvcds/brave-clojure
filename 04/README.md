@@ -62,7 +62,7 @@ Clojure chunks the values for lazy seqs i.e. it realizes 32(?) items of a sequen
 
 > Collection
 
-While a seq implements indivual operations, collections act upon the wholw data structure.
+While a seq implements indivual operations, collections act upon the whole data structure.
 
 * `empty?`
 * `every?`

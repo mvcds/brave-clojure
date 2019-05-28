@@ -81,7 +81,7 @@ It is still possible to access it by using `@#'some/private-var`
 
 When using `lein`, underscores in the filesystem correspond to dashes in the namespace.
 
-And talking about the filesystem, directories are used before the period, and the file after => `directory-separated-by-dashes.name-of-file-with-no-extension`
+And talking about the filesystem, the path is shown by `.` (periods), `directory-separated-by-dashes.sub-directory.name-of-file-with-no-extension`
 
 > Require
 

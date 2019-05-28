@@ -26,7 +26,9 @@ It has three phases
 
 In the evaluating phase, Clojure is using native data structures, which makes it homoiconic.
 
-> [S-Expressions](http://www.gigamonkeys.com/book/syntax-and-semantics.html)???
+> [S-Expressions](http://www.gigamonkeys.com/book/syntax-and-semantics.html)
+
+Basically, a S-Expression is a binary tree represented by lists (delimited by parentheses) and some atoms (elements, which is everything nested into the root, including nested S-Expressions).
 
 > eval
 

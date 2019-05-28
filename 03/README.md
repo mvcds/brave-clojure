@@ -1,4 +1,3 @@
-
 > All clojure is written in a uniform structure, a valid code is known as **form**
 
 ```clj
@@ -40,9 +39,9 @@ Macros are special forms which evaluate operands differently from function calls
     [params]
     (body))
 ```
-**Functions return the last form evaluated**. They support **arity overloading** and accept **rest parameteers** which must be the last argument  `[first second & third]`, in this case `third` is the rest, transformed into a list.
+**Functions return the last form evaluated**. They support **arity overloading** and accept **rest parameteers** which must be the last argument  `[first second & rest]`, with `rest` being transformed into a list.
 
-**Destructing** allows to bind names to values withing colletions
+**Destructing** allows to bind names to values within colletions
 
 > Anonymous functions
 

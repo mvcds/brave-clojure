@@ -25,7 +25,7 @@ Using the return value of a function as an argument to another
 
 Recursion is basically function composition over the same function
 
-* `comp`: creates a new function from the composition of any number of functions, the first function can take anu number of arguments but the remaining functions should be unary `(= 7 ((comp inc *) 2 3))`
+* `comp`: creates a new function from the composition of any number of functions, the first function can take any number of arguments but the remaining functions should be unary `(= 7 ((comp inc *) 2 3))`
 * `memoize`: with pure functions, it takes advantage of referencial transparency by storing a function's arguments and the value returned by it `(memoize (fib 10))`
 
 > "Clojure headers" preview

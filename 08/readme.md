@@ -23,8 +23,11 @@ Turns off evaluation of a symbol, so the final list used by the macro keeps the 
 Quoting recursively quotes all the elements.
 
 ```
-=> '(+ 1 2)
-; (+ 1 2)
+(defmacro better-print
+ [expression]
+ (list 'let ['result expression]
+       (list 'println 'result)
+       'result))
 ```
 
 > Syntax Quoting
@@ -75,7 +78,7 @@ Think about them as string interpolation, but instead they turn of and on the ev
 
 > Unquote splicing
 
-It unwraps a sequable data structure, similar to `apply`.
+It unwraps a sequable data structure, similar to `apply` (take parenthesis out of the result).
 
 ```
 => `(+ ~(list 1 2 3))
