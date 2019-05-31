@@ -8,9 +8,11 @@ A single irreducible unit in a larger system.
 
 Values cannot be changed e.g. adding 1 to 15 does not alterate the "value" of 15.
 
+Values are atomic
+
 > Producing new values
 
-A process applied to a value will produce a new value.
+A *process* applied to a value will produce a new value.
 
 > Identity
 
@@ -28,7 +30,7 @@ It is analog of receiving new data in the real world, just because it has change
 
 Let you manage identities.
 
-There are four reference types in Clojure: atom, ref, var and agent (this last one will not be covered).
+There are four reference types in Clojure: atom, ref, var and agent.
 
 > Atom
 
@@ -105,3 +107,5 @@ When you create a new var, the initial value is its *root*.
 It's possible to change value of the root like if we were mutating it. **This is against Clojure's philosofy!**
 
 You can also temporarily alter a root with `with-redefs`, the var doesn't need to by dynamic. It is useful to mock values on tests.
+
+> Agent (not covered by the book)
