@@ -34,7 +34,7 @@ There are four reference types in Clojure: atom, ref, var and agent.
 
 > Atom
 
-`atom` creates a new atom which *refers* to its initial value.
+`atom` creates a new atom which *refers* to its initial state.
 
 Getting the state of an atom requires dereferencing.
 
@@ -46,7 +46,7 @@ Under the hood, `swap!` implements a *compare-and-set* semantics which basically
 
 > Reset
 
-It is possible to update an atom withouth checking its current value by using `reset`
+It is possible to update an atom withouth checking its current value by using `reset!`
 
 > Watches
 
@@ -68,7 +68,7 @@ Allows to update the state of multiple identities using transaction semantics. T
 2. Consistent: all refs will have valid state
 3. Isolated: the transactions behave as if they were executed serially. If two threads use the same ref, one of them will retry.
 
-Clojure uses __software transactional memory__ (STM) to implement this transactional feature.
+Clojure uses __software transactional memory__ (STM) to implement this transactional feature with a retrial similar to **atoms**.
 
 A ref is created using `ref` function. And it gets altered by using `alter` withing a transaction (created by `dosync`).
 
