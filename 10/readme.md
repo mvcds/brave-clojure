@@ -88,17 +88,21 @@ It's possible to dynamically bind them to alter their roots.
 
 Useful for creating global names that should refer to different values in different contexts.
 
-A dynamic var requires the `^:dynamic` keyword and earmuffs.
+A dynamic var requires the `^:dynamic` keyword and **earmuffs** (as they indicate that a symbol is intended for rebinding).
 
 `(def ^:dynamic *notification-address* "dobby@elf.org")`
 
-It's possible to rebind the value of a var similat to `let`
+It's possible to rebind the value of a var similar to `let`
 
 `(binding [*name* "value"] ...)`
 
+(Aparently, `binding` does not work between threads)
+
 Usually, dynamic vars are used to name a resource that one or more functions target (through arguments) or to configure code.
 
-It's possible to "capture" a value within a function using `set!`, a bit like if it you were setting a value BUT to a variable outside of the function. **Kind like `out` in C#**
+It's possible to "capture" a value within a function using `set!`, a bit like if it you were setting a value BUT to a variable outside of the function. **Kind like `out` in C#**.
+
+When using `set!`, a way to know if a value has been captured is using `thread-bound?`.
 
 > Altering the var root
 
@@ -106,6 +110,8 @@ When you create a new var, the initial value is its *root*.
 
 It's possible to change value of the root like if we were mutating it. **This is against Clojure's philosofy!**
 
-You can also temporarily alter a root with `with-redefs`, the var doesn't need to by dynamic. It is useful to mock values on tests.
+`(alter-var-root #'name (fn [_] "new value"))`
+
+You can also temporarily alter a root with `with-redefs`, the var doesn't need to by dynamic. It is useful to mock values on tests, as it works across threads.
 
 > Agent (not covered by the book)
