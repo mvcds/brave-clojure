@@ -115,3 +115,13 @@ It's possible to change value of the root like if we were mutating it. **This is
 You can also temporarily alter a root with `with-redefs`, the var doesn't need to by dynamic. It is useful to mock values on tests, as it works across threads.
 
 > Agent (not covered by the book)
+
+> Stateless concurrency & parallelism
+
+Some functions, like `map`, have a parallel cousing, in this case `pmap` which allows to paralell mapping to happen.
+
+This technic can increase how fast the program responds, but in some situations the normal function may perform better as there's an overhead in syncrhronizing threads.
+
+For situations like this, it's possible to controls how many items are proceeced in batch.
+
+(more on tinycards)
