@@ -6,10 +6,6 @@
 
 (def word-splitter #"[^a-zA-Z0-9]")
 
-(defn- clean-phrase
-  ([phrase]
-   (str/lower-case (first (str/split-lines phrase)))))
-
 (defn- get-words
   ([phrase]
    (str/split phrase word-splitter)))
@@ -17,7 +13,9 @@
 (defn- count-words-on-quote
   ([quote]
    (-> quote
-       clean-phrase
+       str/split-lines
+       first
+       str/lower-case
        get-words
        frequencies)))
 
