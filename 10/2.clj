@@ -8,7 +8,8 @@
 
 (defn- get-words
   ([phrase]
-   (str/split phrase word-splitter)))
+   (remove str/blank?
+           (str/split phrase word-splitter))))
 
 (defn- count-words-on-quote
   ([quote]
