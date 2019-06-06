@@ -11,6 +11,10 @@
    (remove str/blank?
            (str/split phrase word-splitter))))
 
+(defn- get-random-quote
+  ([]
+   (slurp "https://www.braveclojure.com/random-quote")))
+
 (defn- count-words-on-quote
   ([quote]
    (-> quote
@@ -25,4 +29,4 @@
   (count-words-on-quote example-1))
 
 ;	the line below is required for the exercise
-(quote-word-count 5)
+; (quote-word-count 5)
