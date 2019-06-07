@@ -24,9 +24,15 @@
        get-words
        frequencies)))
 
+(defn- get-quotes
+  ([n]
+   (take n (repeatedly get-random-quote))))
+
 (defn quote-word-count
-  [quotes]
-  (count-words-on-quote example-1))
+  ([]
+   (quote-word-count 1))
+  ([n]
+   (get-quotes n)))
 
 ;	the line below is required for the exercise
 ; (quote-word-count 5)
