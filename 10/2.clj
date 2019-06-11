@@ -24,15 +24,21 @@
        get-words
        frequencies)))
 
-(defn- get-quotes
-  ([n]
-   (take n (repeatedly get-random-quote))))
+(defn- update-atom
+  ([atomic]
+   (future (let [quote (get-random-quote)
+                 values (count-words-on-quote quote)]
+             (println quote)
+             (swap! atomic (partial merge-with + values))))))
 
 (defn quote-word-count
   ([]
    (quote-word-count 1))
   ([n]
-   (get-quotes n)))
+   (let [atomic (atom {})
+         update (partial update-atom atomic)]
+     (take n (repeatedly update))
+     (identity atomic))))
 
 ;	the line below is required for the exercise
-; (quote-word-count 5)
+(quote-word-count 5)
