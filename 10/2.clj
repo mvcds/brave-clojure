@@ -28,7 +28,7 @@
   ([atomic]
    (future (let [quote (get-random-quote)
                  values (count-words-on-quote quote)]
-             (println quote)
+             ; (println quote)
              (swap! atomic (partial merge-with + values))))))
 
 (defn quote-word-count
@@ -37,7 +37,7 @@
   ([n]
    (let [atomic (atom {})
          update (partial update-atom atomic)]
-     (take n (repeatedly update))
+     (run! deref (take n (repeatedly update)))
      (identity atomic))))
 
 ;	the line below is required for the exercise
