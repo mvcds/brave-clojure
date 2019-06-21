@@ -13,11 +13,11 @@ A concurrently running unit of logic that respond to events.
 You create a process with the funtion `go`, which creates a "go block" that runs concurrently on a separate thread.
 
 ```
-> (def (echo (chan)))
+> (def (echo-chan (chan)))
 > (go (println (<! echo-chan)))
 ```
 
-Processes wait to receive messages and block when until they have their messages taken.
+Processes wait to receive messages and block until they have their messages taken.
 
 > Go block's threads
 
