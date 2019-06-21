@@ -47,3 +47,46 @@ Take functions start listening to a channel and the process it belongs to waits 
 The functions `>!` and `>!!` put a message on a channel, returning `true` if it was passsed succesfully.
 
 Putting a message on a channel blocks the process until another process take the message.
+
+> Buffers
+
+The regular buffer size of a channel is 1, but it's possible to define its size.
+
+```
+(chan buffer-size)
+```
+
+If you don want the take functions to block, you'd have to use sliding or dropping buffers.
+
+With sliding buffers, itens are processed in FIFO
+
+```
+(chan (sliding-buffer buffer-size))
+```
+
+And with dropping buffers, they are processed in LIFO
+
+```
+(chan (dropping-bugger buffer-size))
+```
+
+> Blocking and Parking
+
+Blocking means that a thread stops excution until a task is complete, it's heavely linked to I/O operations.
+
+Parking frees up the main thread so it can keep doing work. It allows clojure to interleave multiplle processes in a single thread.
+
+It's only possible to *park* from within a go block (`>!` and `<!`), while the block operations can happen anywhere (`>!, >!!, <!` and `<!!`).
+
+> Thread
+
+There are definitely times when you’ll want to use blocking instead of parking, like when your process will take a long time before putting or taking, and for those occasions you should use `thread`, it acts almost exaclty like `future`: it creates a new thread and executes a process on that thread, though it returns a channel, not a reference type.
+
+When a `thread`'s process stops, the process's return value is put on the channel that the thread returns
+
+```
+(let [t (thread "chili")]
+  (<!! t))
+```
+
+The reason you should use `thread` instead of a go block when you’re performing a long-running task is so you don’t clog your thread pool.
