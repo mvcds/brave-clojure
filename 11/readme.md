@@ -90,3 +90,13 @@ When a `thread`'s process stops, the process's return value is put on the channe
 ```
 
 The reason you should use `thread` instead of a go block when you’re performing a long-running task is so you don’t clog your thread pool.
+
+> alts
+
+Both `alts!` and `alts!!` (see "parking and blocking above") let you use the result of the first successful channel operation among a collection of operations
+
+``
+(alts!! [c1 [c2 "put!"]])
+```
+
+In the case above, `c2` would return immediatelly, so `c1` would be ignored
