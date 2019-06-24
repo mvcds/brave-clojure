@@ -95,6 +95,45 @@ As using channels "consume" your thread pool, for operations that will take long
   (<!! t))
 ```
 
+> Example of using processes
+
+```
+> (defn hot-dog-machine [hot-dog-count]
+    (let [in (chan)
+          out (chan)]
+      (go (loop [hc hot-dog-count]
+            (if (> hc 0)
+              (let [input (<! in)]
+                (if (= 3 input)
+                  (do (>! out "hot dog")
+                      (recur (dec hc)))
+                  (do (>! out "wilted lettuce")
+                      (recur hc))))
+              (do (close! in)
+                  (close! out)))))
+      [in out]))
+
+; the go block is inside the function, and the usage of the channels is outside
+
+> (let [[in out] (hot-dog-machine 2)]
+  (>!! in "pocket lint")
+  (println (<!! out))
+
+  (>!! in 3)
+  (println (<!! out))
+
+  (>!! in 3)
+  (println (<!! out))
+
+  (>!! in 3)
+  (println (<!! out))
+
+; "wilted lettuce"
+; "hot dog"
+; "hot dog"
+; nil, due to closing the channel
+```
+
 > alts
 
 Both `alts!` and `alts!!` (see "parking and blocking above") let you use the result of the first successful channel operation among a collection of operations
