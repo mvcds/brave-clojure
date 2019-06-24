@@ -135,6 +135,27 @@ As using channels "consume" your thread pool, for operations that will take long
 ; nil, due to closing the channel
 ```
 
+> Pipelines of processes
+
+It's possible to make an *in* channel of one process the *out* channel of another, thus creating a pipeline of processes
+
+```
+> (let [c1 (chan)
+        c2 (chan)
+        c3 (chan)]
+    (go (>! c2 (clojure.string/upper-case (<! c1))))
+    (go (>! c3 (clojure.string/reverse (<! c2))))
+    (go (println (<! c3)))
+    (>!! c1 "redrum"))
+; MURDER
+```
+
+This way it's possible to replace callbacks and compose channels.
+
+> Stateful behaviour
+
+It's possible to model a state-machine-like behaviour by using channels - a completed channel will trigger the state transaction.
+
 > alts
 
 Both `alts!` and `alts!!` (see "parking and blocking above") let you use the result of the first successful channel operation among a collection of operations
