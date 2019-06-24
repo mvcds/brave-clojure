@@ -80,16 +80,14 @@ It's only possible to *park* from within a go block (`>!` and `<!`), while the b
 
 > Thread
 
-There are definitely times when you’ll want to use blocking instead of parking, like when your process will take a long time before putting or taking, and for those occasions you should use `thread`, it acts almost exaclty like `future`: it creates a new thread and executes a process on that thread, though it returns a channel, not a reference type.
+As using channels "consume" your thread pool, for operations that will take long time you can use a *thread* (rather than a *channel*) to run your process in a way that don't clog other processes.
 
-When a `thread`'s process stops, the process's return value is put on the channel that the thread returns
+`thread` acts almost exactly like `future`, as it creates a new thread and executes some process on it, but instead of returning a reference type, it returns a *channel* with the thread's returned value put on it.
 
 ```
 (let [t (thread "chili")]
   (<!! t))
 ```
-
-The reason you should use `thread` instead of a go block when you’re performing a long-running task is so you don’t clog your thread pool.
 
 > alts
 
