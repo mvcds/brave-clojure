@@ -67,7 +67,7 @@ With sliding buffers, itens are processed in FIFO
 And with dropping buffers, they are processed in LIFO
 
 ```
-(chan (dropping-bugger buffer-size))
+(chan (dropping-buffer buffer-size))
 ```
 
 > Blocking and Parking
