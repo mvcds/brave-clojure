@@ -78,6 +78,12 @@ Parking frees up the main thread so it can keep doing work. It allows clojure to
 
 It's only possible to *park* from within a go block (`>!` and `<!`), while the block operations can happen anywhere (`>!, >!!, <!` and `<!!`).
 
+> Closing a channel
+
+The function `close!` closes a channel so it is no longer possible to put messages on it.
+
+After all of its values are taken, a closed channel starts to returning `nil`.
+
 > Thread
 
 As using channels "consume" your thread pool, for operations that will take long time you can use a *thread* (rather than a *channel*) to run your process in a way that don't clog other processes.
