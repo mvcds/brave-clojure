@@ -53,7 +53,7 @@ Putting a message on a channel blocks the process until another process take the
 The regular buffer size of a channel is 1, but it's possible to define its size.
 
 ```
-(chan buffer-size)
+> (chan buffer-size)
 ```
 
 If you don want the take functions to block, you'd have to use sliding or dropping buffers.
@@ -61,13 +61,13 @@ If you don want the take functions to block, you'd have to use sliding or droppi
 With sliding buffers, itens are processed in FIFO
 
 ```
-(chan (sliding-buffer buffer-size))
+> (chan (sliding-buffer buffer-size))
 ```
 
 And with dropping buffers, they are processed in LIFO
 
 ```
-(chan (dropping-buffer buffer-size))
+> (chan (dropping-buffer buffer-size))
 ```
 
 > Blocking and Parking
@@ -85,7 +85,7 @@ As using channels "consume" your thread pool, for operations that will take long
 `thread` acts almost exactly like `future`, as it creates a new thread and executes some process on it, but instead of returning a reference type, it returns a *channel* with the thread's returned value put on it.
 
 ```
-(let [t (thread "chili")]
+> (let [t (thread "chili")]
   (<!! t))
 ```
 
@@ -94,7 +94,7 @@ As using channels "consume" your thread pool, for operations that will take long
 Both `alts!` and `alts!!` (see "parking and blocking above") let you use the result of the first successful channel operation among a collection of operations
 
 ``
-(alts!! [c1 [c2 "put!"]])
+> (alts!! [c1 [c2 "put!"]])
 ```
 
 In the case above, `c2` would return immediatelly, so `c1` would be ignored
