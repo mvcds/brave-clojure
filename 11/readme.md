@@ -114,19 +114,20 @@ As using channels "consume" your thread pool, for operations that will take long
       [in out]))
 
 ; the go block is inside the function, and the usage of the channels is outside
+; it also puts and takes from within the same go block, which is not unusual
 
 > (let [[in out] (hot-dog-machine 2)]
-  (>!! in "pocket lint")
-  (println (<!! out))
+    (>!! in "pocket lint")
+    (println (<!! out))
 
-  (>!! in 3)
-  (println (<!! out))
+    (>!! in 3)
+    (println (<!! out))
 
-  (>!! in 3)
-  (println (<!! out))
+    (>!! in 3)
+    (println (<!! out))
 
-  (>!! in 3)
-  (println (<!! out))
+    (>!! in 3)
+    (println (<!! out))
 
 ; "wilted lettuce"
 ; "hot dog"
