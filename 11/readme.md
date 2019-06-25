@@ -1,10 +1,10 @@
 > core.async
 
-A library that allows you to create multiple independent processes withing a single program
+A library that allows you to create multiple independent processes within a single program
 
 > Event interpretation
 
-Basically, everything can be interpretented as different entities concurrently responding to events in the world if we define real-world objects as the sum of their event-driven behaviour.
+Basically, everything can be interpreted as different entities concurrently responding to events in the world if we define real-world objects as the sum of their event-driven behaviour.
 
 > Process
 
@@ -72,7 +72,7 @@ And with dropping buffers, they are processed in LIFO
 
 > Blocking and Parking
 
-Blocking means that a thread stops excution until a task is complete, it's heavely linked to I/O operations.
+Blocking means that a thread stops execution until a task is complete, it's heavely linked to I/O operations.
 
 Parking frees up the main thread so it can keep doing work. It allows clojure to interleave multiplle processes in a single thread.
 
