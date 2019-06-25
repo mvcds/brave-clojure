@@ -164,4 +164,12 @@ Both `alts!` and `alts!!` (see "parking and blocking above") let you use the res
 > (alts!! [c1 [c2 "put!"]])
 ```
 
-In the case above, `c2` would return immediatelly, so `c1` would be ignored
+In the case above, `c2` would return immediatelly, so `c1` would be ignored,
+
+`alts` returns a vector where the first item is the channel's value and the second is the channel itself
+
+With `alts` it's also possible to set a channel to timeout
+
+```
+> (alts!! [c1 (timeout 20)])
+```
