@@ -22,3 +22,20 @@ Java and Clojure programs are compiled to Java bytecode, packed in JAR files.
 
 Writing Clojure code which uses Java classes, objects and methods directly
 
+> Java commands
+
+When you have a `.java` file, the command `javac` will create a file with the `.class` associated to that file, which is executable with `java`
+
+```
+> ls
+# MyOwnTest.java
+> javac MyOwnTest.java
+> ls
+# MyOwnTest.class MyOwnTest.java
+> java MyOwnTest
+# "Hello World!"
+```
+
+Running `java` makes the JVM look at your _classpath_ for a class named after the file, in this case `MyOwnTest`. THe classpath is the list of filesystem paths that the JVM searchs to find a file that defines a class.
+
+Pacakges in Java organize code and require a matching directory structure due to the classpath, which defaults for the current folder when running `javac`. If you want to start from a subfolder, the flag `-classpath` should be suplied to the root of the correct path.
