@@ -17,3 +17,8 @@ Your machine executes machine instructions regardless of the language you've use
 The same way, the Java Virtual Machine (JVM) executes bytecode by translating it on the fly into machine code that the host understand throught a process called _just-in-time compilation_.
 
 Java and Clojure programs are compiled to Java bytecode, packed in JAR files.
+
+> Java interop
+
+Writing Clojure code which uses Java classes, objects and methods directly
+
