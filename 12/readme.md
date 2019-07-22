@@ -55,3 +55,25 @@ If you add the directive `(:gen-class)` in the namespace declaration, the compil
 
 When using **Leiningen**, the manifest file will have a `:main` attribute pointing to the namespace that will generate the main function on Java.
 
+> Interop syntax
+
+The interop syntax is pretty straightforward, just `(.nameOfTheMethod object)`
+
+```
+> (.toUpperCase "By Bluebeard's bananas!")
+; "BY BLUEBEARD'S BANANAS!"
+```
+
+It's also possible to use classes and their fields
+
+```
+> (java.lang.Math/abs -3) 
+; 3
+```
+
+The _dot special form_ is a expanded macro. [The dot operator can do more](http://clojure.org/java_interop#Java%20Interop-The%20Dot%20special%20form).
+
+```
+> (macroexpand-1 '(.toUpperCase "By Bluebeard's bananas!"))
+; (. "By Bluebeard's bananas!" toUpperCase)
+```
