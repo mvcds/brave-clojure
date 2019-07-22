@@ -48,3 +48,10 @@ All your `.class` files can be bundled together into a single file with the java
 The flag `e` needs to be suplied with the class which will be used as an entry point - the class that contains the `main` method.
 
 JAR files have all its classpaths internalized, so it's possible to execute them from anywhere.
+
+> :gen-class
+
+If you add the directive `(:gen-class)` in the namespace declaration, the compiler will produce JVM bytecode as if it was producing java classes.
+
+When using **Leiningen**, the manifest file will have a `:main` attribute pointing to the namespace that will generate the main function on Java.
+
